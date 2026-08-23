@@ -1,0 +1,23 @@
+FROM node:20-bullseye-slim
+
+# Install system dependencies (PostgreSQL client and curl)
+RUN apt-get update && apt-get install -y \
+    postgresql-client \
+    curl \
+    ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set the working directory inside the container
+WORKDIR /opt/api
+
+# Copy project files (package.json and source code) into the container
+COPY . .
+
+# Install production dependencies
+RUN npm install --omit=dev
+
+
+# Expose the API port
+EXPOSE 3000
+
+CMD ["node", "server.js"]

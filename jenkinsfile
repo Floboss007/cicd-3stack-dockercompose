@@ -1,0 +1,41 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                echo 'pulling latest code from git'
+                checkout scm
+            }
+        }
+        stage('Build') {
+            steps {
+                dir(api)
+                echo 'Building...'
+                sh 'docker build -t my-app .'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing...'
+                sh 'docker run -e CI=true my-app npm test'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying...'
+                docker compose up -d --build api
+            }
+        }
+    }
+
+     post {
+        success {
+            echo "app updated successfully"
+        }
+        failure {
+            echo 'Pipeline failed — check the stage logs above to see where.'
+        }
+    }
+
+}
