@@ -25,14 +25,8 @@ pipeline {
                 sh 'npm install --package-lock-only'
                 
                 // 2. Scan dependencies for known security vulnerabilities
-                sh 'npm audit --audit-level=high'
-                
-                // 3. (Optional) Run code linting if configured
-                // sh 'npm run lint'
-                
-                
+                sh 'npm audit --audit-level=high'}
             }
-    }
         }
         stage('Deploy') {
             steps {
