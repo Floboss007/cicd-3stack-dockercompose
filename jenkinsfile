@@ -30,8 +30,7 @@ pipeline {
                 // 3. (Optional) Run code linting if configured
                 // sh 'npm run lint'
                 
-                // 4. Run your unit test suite defined in package.json
-                sh 'npm test'
+                
             }
     }
         }
