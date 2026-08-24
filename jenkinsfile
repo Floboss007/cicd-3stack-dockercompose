@@ -36,8 +36,11 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                echo 'Deploying...'
-                sh 'docker compose stop api && docker compose rm -f api'
+                // Force removal first, ignoring errors if it doesn't exist yet
+                sh 'docker compose stop api || true'
+                sh 'docker compose rm -f api || true'
+                
+                // Run the fresh build
                 sh 'docker compose up -d --build --no-deps api'
             }
         }
