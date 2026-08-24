@@ -35,7 +35,7 @@ pipeline {
                 sh 'docker rm -f api || true'
                 
                 // Run the fresh build
-                sh 'docker compose -p Todo-project up -d --build --no-deps api'
+                sh 'docker compose -p todo-project up -d --build --no-deps api'
             }
         }
     }
