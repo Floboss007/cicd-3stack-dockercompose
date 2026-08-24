@@ -37,7 +37,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying...'
-                sh 'docker compose up -d --build api'
+                sh 'docker compose up -d --build --no-deps api'
             }
         }
     }
