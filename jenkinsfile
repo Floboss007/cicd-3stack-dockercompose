@@ -13,7 +13,7 @@ pipeline {
             steps {
                 dir("api") {
                     echo 'checking files...'
-                    sh '-f package.json && -f server.js && -f Dockerfile'
+                    sh '[ -f package.json && -f server.js && -f Dockerfile ]' 
                 }
                 
             }
