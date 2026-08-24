@@ -2,6 +2,11 @@ pipeline {
     agent any
 
     stages {
+        stage('Wipe Workspace') {
+            steps {
+                cleanWs() // This deletes old, broken workspace files
+            }
+        }
         stage('Checkout') {
             steps {
                 echo 'pulling latest code from git'
