@@ -10,7 +10,10 @@ pipeline {
         }
         stage('Build') {
             steps {
-                dir(api)
+                dir("api") {
+                    echo 'Building...'
+                    sh 'docker build -t my-app .'
+                }
                 echo 'Building...'
                 sh 'docker build -t my-app .'
             }
