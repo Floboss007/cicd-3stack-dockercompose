@@ -63,7 +63,7 @@ resource "google_compute_firewall" "github_webhook_todo" {
 
   allow {
     protocol = "tcp"
-    ports    = ["8080"]
+    ports    = ["8081"]
   }
 
   source_ranges = [
